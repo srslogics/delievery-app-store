@@ -1,6 +1,6 @@
 # Nook grocery demo
 
-A responsive, browser-local single-store grocery delivery demo. No accounts, backend, payment credentials, or real orders.
+A responsive, browser-local single-store grocery delivery demo. Simulated browser-local login; no backend, payment credentials, or real orders.
 
 ## Run locally
 
@@ -36,3 +36,9 @@ Data is saved only to the current browser's local storage under `nook-demo-v1`. 
 Replace Nook in these three files to rebrand. Google Fonts loads optionally online; system sans-serif fonts are used as fallback. All store data and the banner photograph are local.
 
 Photo: Tom Paolini / Unsplash, https://unsplash.com/photos/a-basket-filled-with-lots-of-different-types-of-vegetables-nXKDqpmdx_8 (Unsplash License).
+
+## Demo login
+
+Choose **Log in**, enter a sample name and 10-digit Indian mobile number (e.g. 9876543210), then enter **123456**. No SMS is sent. Checkout asks guests to log in, then resumes with the existing basket. **My account** provides order history and logout. The profile survives refresh in this browser; logout removes the active profile. Orders are grouped by the supplied mobile number. Earlier anonymous orders remain in the store demo.
+
+This is a UI simulation, not secure authentication or verified identity. The store demo remains openly accessible for presentations. Profiles use `nook-customer-v1` in local storage; all data is accessible locally.
