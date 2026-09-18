@@ -1,0 +1,6 @@
+let installPrompt=null;const installButton=document.getElementById('installButton'),installStatus=document.getElementById('installStatus');
+if('serviceWorker' in navigator)navigator.serviceWorker.register('/sw.js').catch(()=>{if(installStatus)installStatus.textContent='Use Open customer app to continue in your browser.'});
+window.addEventListener('beforeinstallprompt',event=>{event.preventDefault();installPrompt=event;if(installButton)installButton.hidden=false;if(installStatus)installStatus.textContent='Nook is ready to add to your home screen.'});
+if(installButton)installButton.addEventListener('click',async()=>{if(!installPrompt)return;installButton.disabled=true;try{await installPrompt.prompt();const choice=await installPrompt.userChoice;if(installStatus)installStatus.textContent=choice.outcome==='accepted'?'Installation requested. Look for Nook on your home screen.':'You can install later from your browser menu.'}finally{installPrompt=null;installButton.hidden=true;installButton.disabled=false}});
+window.addEventListener('appinstalled',()=>{if(installButton)installButton.hidden=true;if(installStatus)installStatus.textContent='Nook is installed. Find it on your home screen.'});
+if(window.matchMedia('(display-mode: standalone)').matches&&installStatus)installStatus.textContent='You’re using the installed Nook app.';

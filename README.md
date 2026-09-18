@@ -42,3 +42,17 @@ Photo: Tom Paolini / Unsplash, https://unsplash.com/photos/a-basket-filled-with-
 Choose **Log in**, enter a sample name and 10-digit Indian mobile number (e.g. 9876543210), then enter **123456**. No SMS is sent. Checkout asks guests to log in, then resumes with the existing basket. **My account** provides order history and logout. The profile survives refresh in this browser; logout removes the active profile. Orders are grouped by the supplied mobile number. Earlier anonymous orders remain in the store demo.
 
 This is a UI simulation, not secure authentication or verified identity. The store demo remains openly accessible for presentations. Profiles use `nook-customer-v1` in local storage; all data is accessible locally.
+
+## Separate store operations app
+
+Open `/operations/` on the same server. Use Orders to accept and pack incoming orders, mark them out for delivery, then delivered. Add a sample order for a walkthrough (this consumes stock). Products & stock supports adding products, searching inventory, and changing price/quantity. Store settings controls the service radius.
+
+The customer and store apps share local storage on the same origin and browser profile; open both in separate tabs to demonstrate live updates. Different phones, browser profiles and installations do not share demo orders. This is not a secure staff portal or a production order system.
+
+## Customer app installation and QR
+
+Open `/install/` for mobile installation instructions and the QR. In store operations, select Customer app QR to download the counter QR image. The QR points to the hosted `/install/` page. The hosted site currently requires the owner's access while its sharing is private.
+
+The customer app includes a web app manifest, 192px and 512px icons, and a network-only service worker. Supported browsers can install it as a standalone web app. On Android use Chrome's Install / Add to Home screen; on iPhone use Safari → Share → Add to Home Screen. Browser installation prompts vary; the page always provides instructions. This is not an APK or App Store package. HTTPS (or localhost) and network access are required; private hosting sign-in may affect browser install eligibility. No offline order submission is provided.
+
+`dist/operations/` contains the store interface. `dist/install/`, `dist/install.js`, `dist/manifest.webmanifest` and `dist/sw.js` provide installation support. If the deployment address changes, regenerate `dist/customer-app-qr.png` for the new install URL.
