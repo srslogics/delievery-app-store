@@ -56,3 +56,11 @@ Open `/install/` for mobile installation instructions and the QR. In store opera
 The customer app includes a web app manifest, 192px and 512px icons, and a network-only service worker. Supported browsers can install it as a standalone web app. On Android use Chrome's Install / Add to Home screen; on iPhone use Safari → Share → Add to Home Screen. Browser installation prompts vary; the page always provides instructions. This is not an APK or App Store package. HTTPS (or localhost) and network access are required; private hosting sign-in may affect browser install eligibility. No offline order submission is provided.
 
 `dist/operations/` contains the store interface. `dist/install/`, `dist/install.js`, `dist/manifest.webmanifest` and `dist/sw.js` provide installation support. If the deployment address changes, regenerate `dist/customer-app-qr.png` for the new install URL.
+
+## WhatsApp / social link preview
+
+The customer, installation and operations pages include server-readable Open Graph metadata and a rectangular branded preview image at `/social-preview.png`.
+
+For an existing Render Static Site, change **Build Command** to `node scripts/prepare-social.mjs`, keep **Publish Directory** as `dist`, then deploy. Render's `RENDER_EXTERNAL_URL` sets the absolute image and page URLs automatically. If you use a custom domain, set `SITE_URL` to its HTTPS origin. New Blueprint deployments can use the included `render.yaml`.
+
+The page and image must be publicly accessible to WhatsApp's crawler. Private Sites hosting may not produce a preview. WhatsApp can cache previews and chooses its own card layout. After deploying, test a freshly pasted link; a query parameter such as `?share=2` can help test a fresh URL. This change does not redirect the installation QR to Render; that still requires regenerating the QR for the final URL.

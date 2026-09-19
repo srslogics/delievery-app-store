@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: nook-store
+    runtime: static
+    buildCommand: node scripts/prepare-social.mjs
+    staticPublishPath: ./dist
